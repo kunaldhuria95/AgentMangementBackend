@@ -49,6 +49,7 @@ const register = asyncHandler(async (req, res, next) => {
 
 const login = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(email,password)
 
     if (!email || !password) {
         throw new BadRequestError('All fields (email and password) are required');

@@ -4,8 +4,10 @@ import cookieParser from "cookie-parser";
 import cors from 'cors';
 import rateLimiter from 'express-rate-limit';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
+import xss from 'xss-clean'
+import mongoSanitize from 'express-mongo-sanitize'
 dotenv.config();
-
 // Routes and DB
 import connectDB from "./database/connect.js";
 import notFoundMiddleWare from "./middleware/not-found.js";
@@ -20,6 +22,7 @@ const app = express();
 // Cookie parser
 app.use(cookieParser());
 
+app.set('trust proxy', 1)
 
 // CORS – configure before routes
 app.use(cors({
@@ -30,11 +33,15 @@ app.use(cors({
 // Logger
 app.use(morgan("dev"));
 
+
 //  Body parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+//security 
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
 
 // Rate limiter – should be as early as possible to protect all endpoints
 
