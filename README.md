@@ -13,8 +13,8 @@ This is the backend API built using **Node.js** and **Express.js**. It handles u
 - Environment-based configuration with `.env`
 - Middleware: Helmet, XSS-Clean, Mongo Sanitize, CORS
 - Centralized error handling
-- CSV/Excel file upload and parsing (if applicable)
-- Task distribution logic (if implemented)
+- CSV/Excel file upload and parsing 
+- Task distribution logic
 
 ---
 
